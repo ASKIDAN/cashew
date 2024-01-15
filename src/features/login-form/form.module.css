@@ -1,3 +1,7 @@
+.form * {
+  display: inline-block;
+}
+
 .marginTop10 {
   margin-top: 10px;
 }
