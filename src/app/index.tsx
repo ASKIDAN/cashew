@@ -1,7 +1,7 @@
-import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import Router from '@/pages';
-import './index.css';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import Router from '@/pages'
+import './index.css'
 
 const App = () => {
   return <BrowserRouter>
@@ -9,4 +9,4 @@ const App = () => {
   </BrowserRouter>
 }
 
-export default App;
+export default App

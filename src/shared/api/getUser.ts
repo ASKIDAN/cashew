@@ -1,23 +1,23 @@
-import {User} from "@/shared";
+import { type User } from '@/shared'
 
 type GetUser = (payload: {
-  id: string,
+  id: string
 }) => Promise<User>
 
-export const getUser:GetUser = (payload) => {
-  return fetch('https://reqres.in/api/users/' + payload.id, {
+export const getUser: GetUser = async (payload) => {
+  return await fetch('https://reqres.in/api/users/' + payload.id, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   }).then(async response => {
-    const data = await response.json();
+    const data = await response.json()
     if (response.ok) {
       return {
         id: data.data?.id,
         name: data.data?.email || data.data?.name || data.data?.first_name || JSON.stringify(data.data)
-      };
+      }
     }
-    throw new Error(`${response.status} ${data.error}`);
-  });
-};
+    throw new Error(`${response.status} ${data.error}`)
+  })
+}

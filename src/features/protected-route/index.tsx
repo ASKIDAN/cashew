@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react';
-import {useNavigate} from "react-router-dom";
-import {ROUTES, Spin, validateToken} from "@/shared";
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ROUTES, Spin, validateToken } from '@/shared'
 
 interface Props {
   children: React.ReactElement
 }
-export const ProtectedRoute:React.FC<Props> = (props) => {
-  const [loading, setLoading] = React.useState(true);
-  const navigate = useNavigate();
+export const ProtectedRoute: React.FC<Props> = (props) => {
+  const [loading, setLoading] = React.useState(true)
+  const navigate = useNavigate()
   useEffect(() => {
     validateToken()
       .then((result) => {
@@ -20,7 +20,7 @@ export const ProtectedRoute:React.FC<Props> = (props) => {
       .catch(() => {
         navigate(ROUTES.LOGIN)
       })
-  }, [navigate]);
+  }, [navigate])
 
-  return loading ? <Spin size={"large"} /> : props.children;
+  return loading ? <Spin size={'large'} /> : props.children
 }

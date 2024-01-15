@@ -1,37 +1,38 @@
-import React, {useEffect} from 'react';
-import { useFormik } from 'formik';
+import React, { useEffect } from 'react'
+import { useFormik } from 'formik'
 import { useNavigate } from 'react-router-dom'
-import { Input, Button } from '@/shared/ui';
-import {schema} from "./schema";
-import css from './form.module.css';
-import {requestLogin, validateToken} from "@/shared/api";
-import {ROUTES, TOKEN_KEY, USER_KEY} from "@/shared";
-import { message } from 'antd';
+import { Input, Button } from '@/shared/ui'
+import { schema } from './schema'
+import css from './form.module.css'
+import { requestLogin, validateToken } from '@/shared/api'
+import { ROUTES, TOKEN_KEY } from '@/shared'
+import { message } from 'antd'
 
 export const LoginForm = () => {
-  const navigate = useNavigate();
-  const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate()
+  const [messageApi, contextHolder] = message.useMessage()
 
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: '',
+      password: ''
     },
     validateOnChange: true,
     validationSchema: schema,
     onSubmit: (values, helpers) => {
-      helpers.setSubmitting(true);
+      helpers.setSubmitting(true)
       requestLogin(values)
         .then((data) => {
-          localStorage.setItem(TOKEN_KEY, data.token);
+          // actually this action is extra
+          localStorage.setItem(TOKEN_KEY, data.token)
           navigate(ROUTES.INDEX)
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           messageApi.error(err.message)
-          helpers.setSubmitting(false);
+          helpers.setSubmitting(false)
         })
-    },
-  });
+    }
+  })
 
   useEffect(() => {
     validateToken().then(data => {
@@ -48,7 +49,7 @@ export const LoginForm = () => {
         <span>Email</span>
         <Input
           className={css.marginTop10}
-          status={formik.errors.email && formik.touched.email ? "error" : undefined}
+          status={formik.errors.email && formik.touched.email ? 'error' : ''}
           disabled={formik.isSubmitting}
           id="email"
           name="email"
@@ -63,7 +64,7 @@ export const LoginForm = () => {
         </span>
         <Input
           className={css.marginTop10}
-          status={formik.errors.password && formik.touched.password ? "error" : undefined}
+          status={formik.errors.password && formik.touched.password ? 'error' : ''}
           disabled={formik.isSubmitting}
           id="password"
           name="password"
@@ -81,5 +82,5 @@ export const LoginForm = () => {
         </Button>
       </form>
     </>
-  );
+  )
 }

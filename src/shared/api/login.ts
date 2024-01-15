@@ -1,20 +1,20 @@
 type RequestLogin = (payload: {
-  email: string,
-  password: string,
+  email: string
+  password: string
 }) => Promise<{ token: string }>
 
-export const requestLogin:RequestLogin = (payload) => {
-  return fetch('https://reqres.in/api/login', {
+export const requestLogin: RequestLogin = async (payload) => {
+  return await fetch('https://reqres.in/api/login', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(payload)
   }).then(async response => {
-    const data = await response.json();
+    const data = await response.json()
     if (response.ok) {
-      return data;
+      return data
     }
-    throw new Error(`${response.status} ${data.error}`);
-  });
-};
+    throw new Error(`${response.status} ${data.error}`)
+  })
+}

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Login from './login'
 import Dashboard from './dashboard'
 import Layout from './layout'
 
 import { ROUTES } from '@/shared'
-import { ProtectedRoute } from "@/features";
+import { ProtectedRoute } from '@/features'
 
 const Router = () => (
   <Routes>
@@ -15,6 +15,6 @@ const Router = () => (
     </Route>
     <Route path={ROUTES.INDEX + '*'} element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
   </Routes>
-);
+)
 
-export default Router;
+export default Router

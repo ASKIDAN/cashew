@@ -1,2 +1,2 @@
 import { Button as Component } from 'antd'
-export const Button = Component;
+export const Button = Component
